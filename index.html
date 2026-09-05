@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bishwajit Dhar — Full-Stack Development Intern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F3F2;
+    --card:#FFFFFF;
+    --ink:#171B1D;
+    --ink-dim:#5B6669;
+    --line:#DBE1DF;
+    --blue:#2D5F8A;
+    --green:#4F8A6E;
+    --heading:'Manrope', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--body); line-height:1.65;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--blue); color:#fff;}
+  .wrap{max-width:860px; margin:0 auto; padding:0 28px;}
+  @media (max-width:560px){ .wrap{padding:0 20px;} }
+  img{max-width:100%;}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(241,243,242,0.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex; justify-content:space-between; align-items:center; padding:14px 0;}
+  .nav-brand{display:flex; align-items:center; gap:10px;}
+  .nav-avatar{width:30px; height:30px; border-radius:50%; overflow:hidden; flex-shrink:0;}
+  .nav-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .nav-name{font-family:var(--heading); font-weight:800; font-size:1rem;}
+  .nav-links{display:flex; gap:26px; font-size:13.5px; color:var(--ink-dim);}
+  .nav-links a:hover{color:var(--blue);}
+  @media (max-width:560px){ .nav-links{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:64px 0 48px; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center;}
+  @media (max-width:680px){ .hero{grid-template-columns:1fr; text-align:left;} }
+  .hero-photo{
+    width:168px; height:168px; border-radius:50%; overflow:hidden;
+    border:4px solid var(--card); box-shadow:0 0 0 1px var(--line), 0 18px 40px -18px rgba(23,27,29,0.35);
+    flex-shrink:0; justify-self:end;
+  }
+  @media (max-width:680px){ .hero-photo{justify-self:start; width:132px; height:132px;} }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .avail{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12px; color:var(--green);
+    border:1px solid var(--line); background:var(--card);
+    padding:6px 12px; border-radius:20px; margin-bottom:24px;
+  }
+  .avail .dot{width:7px; height:7px; border-radius:50%; background:var(--green);}
+  h1{
+    font-family:var(--heading); font-weight:800;
+    font-size:clamp(2.1rem, 5.5vw, 3.1rem);
+    letter-spacing:-0.02em; line-height:1.1; margin-bottom:16px;
+  }
+  .role{color:var(--blue); font-family:var(--heading); font-weight:700;}
+  .hero p.lede{max-width:60ch; color:var(--ink-dim); font-size:1.05rem; margin-bottom:30px;}
+  .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:36px;}
+  .btn{
+    font-family:var(--body); font-weight:600; font-size:14px;
+    padding:11px 20px; border-radius:8px; border:1px solid var(--line);
+    background:var(--card); transition:border-color .15s ease, background .15s ease;
+  }
+  .btn.primary{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .btn.primary:hover{background:var(--blue); border-color:var(--blue);}
+  .btn.ghost:hover{border-color:var(--blue); color:var(--blue);}
+  .contact-strip{display:flex; flex-wrap:wrap; gap:18px; font-size:13.5px; color:var(--ink-dim);}
+  .contact-strip a:hover{color:var(--blue);}
+
+  /* ---------- Section shell ---------- */
+  section{padding:52px 0; border-top:1px solid var(--line);}
+  .sec-title{font-family:var(--heading); font-weight:800; font-size:1.5rem; margin-bottom:8px;}
+  .sec-sub{color:var(--ink-dim); font-size:14.5px; margin-bottom:36px; max-width:60ch;}
+
+  /* ---------- Timeline ---------- */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:''; position:absolute; left:5px; top:6px; bottom:6px;
+    width:1px; background:var(--line);
+  }
+  .t-item{position:relative; padding-bottom:38px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-dot{
+    position:absolute; left:-28px; top:5px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--card); border:2px solid var(--blue);
+  }
+  .t-item.education .t-dot{border-color:var(--green);}
+  .t-item.work .t-dot{border-color:var(--ink-dim);}
+  .t-meta{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:6px;}
+  .t-kind{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.05em;
+    color:var(--blue); border:1px solid var(--line); padding:2px 8px; border-radius:20px;
+  }
+  .t-item.education .t-kind{color:var(--green);}
+  .t-item.work .t-kind{color:var(--ink-dim);}
+  .t-date{font-family:var(--mono); font-size:12px; color:var(--ink-dim);}
+  .t-title{font-family:var(--heading); font-weight:700; font-size:1.15rem; margin-bottom:4px;}
+  .t-org{color:var(--ink-dim); font-size:13.5px; margin-bottom:12px;}
+  .t-desc{color:var(--ink-dim); font-size:14.5px; max-width:64ch;}
+  .t-desc li{margin-left:18px; margin-bottom:6px;}
+  .t-tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;}
+  .t-tag{font-family:var(--mono); font-size:11px; color:var(--ink-dim); border:1px solid var(--line); padding:3px 9px; border-radius:20px; background:var(--card);}
+  .t-link{
+    display:inline-block; margin-top:14px; font-size:13px; font-weight:600; color:var(--blue);
+    border-bottom:1px solid var(--blue); padding-bottom:1px;
+  }
+  .t-link:hover{opacity:0.7;}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:24px;}
+  @media (max-width:600px){ .skills-grid{grid-template-columns:1fr;} }
+  .skill-group{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px 24px; transition:box-shadow .18s ease, transform .18s ease;}
+  .skill-group:hover{box-shadow:0 14px 30px -18px rgba(23,27,29,0.25); transform:translateY(-2px);}
+  .skill-group h4{font-family:var(--heading); font-size:14px; margin-bottom:14px; color:var(--ink-dim); font-weight:700;}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-tags span{
+    font-size:13px; padding:6px 12px; border-radius:20px;
+    background:var(--bg); border:1px solid var(--line);
+  }
+
+  /* ---------- Languages ---------- */
+  .lang-row{display:flex; gap:28px; flex-wrap:wrap;}
+  .lang-item{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px 20px; min-width:160px;}
+  .lang-item .name{font-family:var(--heading); font-weight:700; font-size:14.5px; margin-bottom:4px;}
+  .lang-item .lvl{font-size:12.5px; color:var(--ink-dim);}
+
+  /* ---------- Contact / footer ---------- */
+  .contact-card{
+    background:var(--ink); color:#F1F3F2; border-radius:14px;
+    padding:44px 40px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .contact-card h3{font-family:var(--heading); font-size:1.5rem; margin-bottom:8px;}
+  .contact-card p{color:#B7C1C4; max-width:44ch; font-size:14.5px;}
+  .contact-card .links{display:flex; flex-direction:column; gap:10px; font-size:13.5px;}
+  .contact-card .links a{border-bottom:1px solid #34423F; padding-bottom:2px;}
+  .contact-card .links a:hover{color:#8FD1B8;}
+
+  footer{padding:30px 0 60px; font-family:var(--mono); font-size:11.5px; color:var(--ink-dim); text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="wrap nav-inner">
+    <div class="nav-brand">
+      <div class="nav-avatar"><img src="profile-photo.jpg" alt=""></div>
+      <div class="nav-name">Bishwajit Dhar</div>
+    </div>
+    <div class="nav-links">
+      <a href="#journey">Journey</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div>
+      <div class="avail"><span class="dot"></span> Open to internships from September 2026</div>
+      <h1>Bishwajit Dhar —<br><span class="role">Full-Stack Development Intern</span></h1>
+      <p class="lede">Second-year IT student at Inholland University of Applied Sciences, building full-stack applications with C#, ASP.NET MVC, PHP, JavaScript and Vue.js — from Figma prototype to working backend. Based in Hoofddorp, Netherlands.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="Bishwajit_Dhar_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn ghost" href="https://github.com/Bishwajit-hub" target="_blank" rel="noopener">GitHub Profile</a>
+        <a class="btn ghost" href="mailto:bishwajitdhar61140@gmail.com">Email Me</a>
+      </div>
+      <div class="contact-strip">
+        <a href="tel:+31616555337">+31 6 16555337</a>
+        <a href="https://linkedin.com/in/bishwajit-dhar-868880316" target="_blank" rel="noopener">linkedin.com/in/bishwajit-dhar-868880316</a>
+        <span>Hoofddorp, Netherlands</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="profile-photo.jpg" alt="Bishwajit Dhar">
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="sec-title">Journey</div>
+    <div class="sec-sub">Academic projects, work, and education — in the order they happened.</div>
+
+    <div class="timeline">
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-meta"><span class="t-kind">PROJECT</span><span class="t-date">Mar 2026 – May 2026</span></div>
+        <div class="t-title">Haarlem Festival — Multi-Event Website</div>
+        <div class="t-org">Inholland group project</div>
+        <ul class="t-desc">
+          <li>Built the "Stories" event section of a dynamic festival website in PHP, taking it from Figma prototype to working web pages.</li>
+          <li>Designed the MySQL database schema and wrote the queries powering event listings, filtering, and the ticket booking flow.</li>
+          <li>Developed responsive frontend pages with event cards and age-based filtering, refined through documented usability testing.</li>
+        </ul>
+        <div class="t-tags"><span class="t-tag">PHP</span><span class="t-tag">MySQL</span><span class="t-tag">HTML5</span><span class="t-tag">CSS3</span><span class="t-tag">JavaScript</span><span class="t-tag">Figma</span></div>
+        <a class="t-link" href="https://github.com/KaamiAhmed/Haarlem-Festival" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-meta"><span class="t-kind">PROJECT</span><span class="t-date">Sep 2025 – Nov 2025</span></div>
+        <div class="t-title">Jetto — Inventory Management System</div>
+        <div class="t-org">Personal project</div>
+        <ul class="t-desc">
+          <li>Built a full inventory management system in plain PHP with an MVC-style structure — controllers, models, views, and a repository/service layer for products, stock movements, and users.</li>
+          <li>Implemented core inventory features: product and category management, stock quantity updates, and tracking of sales, purchases, waste, and adjustments, plus a dashboard summarizing totals and recent activity.</li>
+          <li>Added user authentication (login, registration, logout, password reset) with hashed passwords and secure, httpOnly/SameSite session cookies, and containerized the app with Docker for local setup.</li>
+        </ul>
+        <div class="t-tags"><span class="t-tag">PHP</span><span class="t-tag">MySQL</span><span class="t-tag">JavaScript</span><span class="t-tag">Docker</span></div>
+        <a class="t-link" href="https://github.com/Bishwajit-hub/inventory-management-system" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-meta"><span class="t-kind">PROJECT</span><span class="t-date">Apr 2025 – Jun 2025</span></div>
+        <div class="t-title">Chapeau — Restaurant Ordering System</div>
+        <div class="t-org">Inholland academic project</div>
+        <ul class="t-desc">
+          <li>Designed the full UI/UX in Figma, then developed a complete ordering system covering table management, order flow, and kitchen/bar views.</li>
+          <li>Implemented database design and CRUD functionality in C# with MS SQL Server, focusing on data integrity and fast lookups.</li>
+        </ul>
+        <div class="t-tags"><span class="t-tag">C#</span><span class="t-tag">MS SQL Server</span><span class="t-tag">Figma</span></div>
+        <a class="t-link" href="https://github.com/Rakib730066/Chapeau-ordering-system/tree/Developer" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot"></div>
+        <div class="t-meta"><span class="t-kind">PROJECT</span><span class="t-date">Feb 2025 – Apr 2025</span></div>
+        <div class="t-title">Someren Database Project</div>
+        <div class="t-org">Inholland academic project</div>
+        <ul class="t-desc">
+          <li>Built a management application to organize activities, participants, and supervisors for a residential program.</li>
+          <li>Implemented a layered architecture (UI, service, and data-access layers) to keep the codebase maintainable and testable.</li>
+        </ul>
+        <div class="t-tags"><span class="t-tag">C#</span><span class="t-tag">MS SQL Server</span></div>
+        <a class="t-link" href="https://github.com/Milen714/Database-Project-1A-Group4" target="_blank" rel="noopener">View repository →</a>
+      </div>
+
+      <div class="t-item work">
+        <div class="t-dot"></div>
+        <div class="t-meta"><span class="t-kind">WORK</span><span class="t-date">Sep 2024 – Present</span></div>
+        <div class="t-title">Front Desk Receptionist</div>
+        <div class="t-org">The Times Hotel, Amsterdam</div>
+        <ul class="t-desc">
+          <li>Manage guest check-ins, check-outs, reservations, and payment processing with accuracy and a welcoming, professional manner.</li>
+          <li>Handle phone, email, and third-party platform enquiries (e.g. Booking.com) in English, while ensuring guest and premises safety.</li>
+        </ul>
+      </div>
+
+      <div class="t-item education">
+        <div class="t-dot"></div>
+        <div class="t-meta"><span class="t-kind">EDUCATION</span><span class="t-date">2024 – Present</span></div>
+        <div class="t-title">BSc Information Technology</div>
+        <div class="t-org">Inholland University of Applied Sciences, Haarlem, Netherlands</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-title">Skills</div>
+    <div class="sec-sub">Technologies and practices I've worked with across coursework and projects.</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages &amp; Frameworks</h4>
+        <div class="skill-tags">
+          <span>C#</span><span>ASP.NET MVC</span><span>PHP</span><span>JavaScript</span><span>Vue.js</span><span>HTML5</span><span>CSS3</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Databases</h4>
+        <div class="skill-tags">
+          <span>MS SQL Server</span><span>MySQL</span><span>MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud &amp; Tools</h4>
+        <div class="skill-tags">
+          <span>Microsoft Azure</span><span>Git &amp; GitHub</span><span>Docker</span><span>REST APIs</span><span>Figma</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Practices</h4>
+        <div class="skill-tags">
+          <span>Object-Oriented Programming</span><span>Agile/Scrum</span><span>Responsive Design</span><span>UI/UX Prototyping</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="languages">
+    <div class="sec-title">Languages</div>
+    <div class="lang-row">
+      <div class="lang-item"><div class="name">Bengali</div><div class="lvl">Native</div></div>
+      <div class="lang-item"><div class="name">English</div><div class="lvl">C1 reading · B2 speaking/writing</div></div>
+      <div class="lang-item"><div class="name">Hindi / Urdu</div><div class="lvl">Basic</div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-card">
+      <div>
+        <h3>Let's talk.</h3>
+        <p>Looking for a back-end, front-end, or full-stack internship starting September 2026. Happy to share code, walk through any project, or answer questions.</p>
+      </div>
+      <div class="links">
+        <a href="mailto:bishwajitdhar61140@gmail.com">bishwajitdhar61140@gmail.com</a>
+        <a href="tel:+31616555337">+31 6 16555337</a>
+        <a href="https://linkedin.com/in/bishwajit-dhar-868880316" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Bishwajit-hub" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © <span id="year"></span> Bishwajit Dhar — Hoofddorp, Netherlands
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

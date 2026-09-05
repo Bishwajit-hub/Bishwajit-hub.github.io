@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import Journey from './components/Journey'
+import Projects from './components/Projects'
+import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Languages from './components/Languages'
 import Contact from './components/Contact'
@@ -10,9 +11,10 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <div className="max-w-[860px] mx-auto px-5 sm:px-7">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8">
         <Hero />
-        <Journey />
+        <Projects />
+        <Experience />
         <Skills />
         <Languages />
         <Contact />

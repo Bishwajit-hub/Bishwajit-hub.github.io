@@ -2,16 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: 246 247 246;
+  --card: 255 255 255;
+  --ink: 23 27 29;
+  --inkdim: 91 102 105;
+  --line: 224 228 226;
+  --accent: 45 95 138;
+  --accent2: 79 138 110;
+  --green: 79 138 110;
+}
+
+.dark {
+  --bg: 13 16 17;
+  --card: 21 25 27;
+  --ink: 236 239 238;
+  --inkdim: 148 160 162;
+  --line: 38 44 46;
+  --accent: 110 170 224;
+  --accent2: 122 196 165;
+  --green: 122 196 165;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: theme('colors.bg');
-  color: theme('colors.ink');
+  background: rgb(var(--bg));
+  color: rgb(var(--ink));
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 ::selection {
-  background: theme('colors.accent');
+  background: rgb(var(--accent));
   color: #fff;
+}
+
+/* scroll-reveal: element is hidden until the .in-view class is toggled on by IntersectionObserver */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
